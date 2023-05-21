@@ -45,3 +45,46 @@ header {
     padding: 10px 0 0 0; 
     gap: 15px; 
 }
+
+.controls-container {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 0 auto;
+}
+
+/* controls */ 
+
+.emotion-radios{ 
+    display: flex; 
+    flex-direction: column;
+    border: 1px solid #bcbcbc;
+    border-radius: 5px;
+}
+
+.radio {
+    display: flex;
+    border-bottom: 1px solid #bcbcbc;
+    padding: 4px 8px; 
+}
+
+.radio:last-of-type{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.label{
+    font-size: 14px; 
+    padding: 3px; 
+    width: 100%; 
+    cursor: pointer;
+
+}
+
+input[type="radio"]{
+    cursor: pointer;
+}
+
+.gifs-check{
+    
+}
