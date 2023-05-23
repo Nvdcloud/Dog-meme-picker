@@ -1,43 +1,46 @@
 import { catsData } from "./data.mjs";
+
 const emotionRadios = document.getElementById("emotion-radios")
 
 
+emotionRadios.addEventListener("change", highlightOption)
+
+
 function highlightOption(event){
-    // const radios = document.getElementsByClassName("radio")
-    // for(let radio of radios){
-        
-    // }
+    const radioSelect = document.getElementsByClassName("radio")
+    const classList = document.getElementById(event.target.id)
+        for(let selection of radioSelect){
+            selection.classList.remove("highlight")
+        }
 
-    const clickedElement = document.getElementById(event.target)
-    console.log(clickedElement)
+   
+   classList.parentElement.classList.add("highlight")
 }
-
-  
 
 function getCatEmotions(){
-    const CAT_EMOTIONS = []
-    for (let cat of catsData){
-        for(let emotion of cat.emotionTags)
-            if(!CAT_EMOTIONS.includes(emotion)){
-            CAT_EMOTIONS.push(emotion)
+    const emotionArray = []
+    for(let cat of catsData){
+        for(let emotion of cat.emotionTags){
+            if(!emotionArray.includes(emotion)){
+                emotionArray.push(emotion)
             }
+        }
     }
-    return CAT_EMOTIONS
+    return emotionArray
 }
 
-function renderRadios(){
-    const emotions = getCatEmotions()
+function renderEmotionRadio(){
+    const emotionRadio = getCatEmotions()
     let radioStr = ``
-    for (let emotion of emotions){
+    for (let emotion of emotionRadio){
         radioStr += `
         <div class="radio">
-        <label for="${emotion}">${emotion}</label>
-        <input type="radio" name="emotions" value="${emotion}" id="${emotion}">
+            <label for="${emotion}">${emotion}</label>
+            <input type="radio" name="emotions" id="${emotion}" value="${emotion}">
         </div>
-    `
+        `
     }
-    emotionRadios.innerHTML = radioStr
+     return emotionRadios.innerHTML = radioStr
 }
 
-renderRadios()
-highlightOption(event)
+renderEmotionRadio()
