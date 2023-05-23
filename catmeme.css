@@ -50,7 +50,7 @@ header {
     display: flex;
     flex-direction: column;
     width: 200px;
-    margin: 0 auto;
+    margin: 0px auto;
 }
 
 /* controls */ 
@@ -64,6 +64,7 @@ header {
 
 .radio {
     display: flex;
+    align-items: center;
     border-bottom: 1px solid #bcbcbc;
     padding: 4px 8px; 
 }
@@ -73,12 +74,20 @@ header {
     border-bottom-right-radius: 5px;
 }
 
-.label{
+.highlight{
+    background-color: #fff0ee;
+    color: #bd301d;
+    font-weight: bold;
+    border-color: #bd301d;
+}
+
+label{
     font-size: 14px; 
     padding: 3px; 
     width: 100%; 
     cursor: pointer;
-
+   
+   
 }
 
 input[type="radio"]{

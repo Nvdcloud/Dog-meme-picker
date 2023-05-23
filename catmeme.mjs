@@ -2,6 +2,18 @@ import { catsData } from "./data.mjs";
 const emotionRadios = document.getElementById("emotion-radios")
 
 
+function highlightOption(event){
+    // const radios = document.getElementsByClassName("radio")
+    // for(let radio of radios){
+        
+    // }
+
+    const clickedElement = document.getElementById(event.target)
+    console.log(clickedElement)
+}
+
+  
+
 function getCatEmotions(){
     const CAT_EMOTIONS = []
     for (let cat of catsData){
@@ -14,12 +26,18 @@ function getCatEmotions(){
 }
 
 function renderRadios(){
-    let emotionOptions = getCatEmotions()
-    emotionRadios.innerHTML += `
-        <div class="radios">${emotionOptions}</div>
+    const emotions = getCatEmotions()
+    let radioStr = ``
+    for (let emotion of emotions){
+        radioStr += `
+        <div class="radio">
+        <label for="${emotion}">${emotion}</label>
+        <input type="radio" name="emotions" value="${emotion}" id="${emotion}">
+        </div>
     `
-
+    }
+    emotionRadios.innerHTML = radioStr
 }
 
 renderRadios()
-
+highlightOption(event)
