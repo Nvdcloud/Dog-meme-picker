@@ -1,10 +1,10 @@
 import { catsData } from "./data.mjs";
 
 const emotionRadios = document.getElementById("emotion-radios")
-
+const getImageBtn = document.getElementById("get-image-btn")
 
 emotionRadios.addEventListener("change", highlightOption)
-
+getImageBtn.addEventListener("click", renderCat)
 
 function highlightOption(event){
     const radioSelect = document.getElementsByClassName("radio")
@@ -17,9 +17,9 @@ function highlightOption(event){
    classList.parentElement.classList.add("highlight")
 }
 
-function getCatEmotions(){
+function getCatEmotions(cats){
     const emotionArray = []
-    for(let cat of catsData){
+    for(let cat of cats){
         for(let emotion of cat.emotionTags){
             if(!emotionArray.includes(emotion)){
                 emotionArray.push(emotion)
@@ -29,8 +29,8 @@ function getCatEmotions(){
     return emotionArray
 }
 
-function renderEmotionRadio(){
-    const emotionRadio = getCatEmotions()
+function renderEmotionRadio(cats){
+    const emotionRadio = getCatEmotions(cats)
     let radioStr = ``
     for (let emotion of emotionRadio){
         radioStr += `
@@ -43,4 +43,4 @@ function renderEmotionRadio(){
      return emotionRadios.innerHTML = radioStr
 }
 
-renderEmotionRadio()
+renderEmotionRadio(catsData)
