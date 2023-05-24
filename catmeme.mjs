@@ -5,9 +5,12 @@ const getImageBtn = document.getElementById("get-image-btn")
 const gifsOnlyOption = document.getElementById("gifs-only-option")
 const modalClostBtn = document.getElementById("meme-modal-close-btn")
 const memeModal = document.getElementById("meme-modal")
+const memeModalInner = document.getElementById("meme-modal-inner")
 
 emotionRadios.addEventListener("change", highlightOption)
-// getImageBtn.addEventListener("click", renderCat)
+getImageBtn.addEventListener("click", renderMemeCat)
+
+
 
 
 //'hides' the modal display when clicked. 
@@ -19,7 +22,7 @@ modalClostBtn.addEventListener("click", function(){
 function getMatchingCat(){
     if(document.querySelector("input[type='radio']:checked")){
         const selectedEmotion = document.querySelector("input[type='radio']:checked").value
-        const isGif = gifsOnlyOption.ariaChecked
+        const isGif = gifsOnlyOption.checked
 
         const selectedCat = catsData.filter(function(cat){
             if(isGif){
@@ -33,6 +36,26 @@ function getMatchingCat(){
         
 }
 
+
+function getSingleCatObject(){
+    const singleCat = getMatchingCat()
+
+    if(singleCat.length === 1){
+        return singleCat[0]
+    } else {
+      let randomNumber = Math.floor(Math.random() * singleCat.length)
+        return singleCat[randomNumber]
+    }
+}
+
+function renderMemeCat(){
+    const renderCat = getSingleCatObject()
+    memeModalInner.innerHTML = `
+    <img class="cat-img" src="./images/${renderCat.image}" alt="${renderCat.alt}">
+    
+    `
+    memeModal.style.display = "flex"
+}
 
 //function that adds and remove a CSS property to the selected target
 function highlightOption(event){
