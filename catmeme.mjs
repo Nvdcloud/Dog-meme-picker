@@ -2,10 +2,39 @@ import { catsData } from "./data.mjs";
 
 const emotionRadios = document.getElementById("emotion-radios")
 const getImageBtn = document.getElementById("get-image-btn")
+const gifsOnlyOption = document.getElementById("gifs-only-option")
+const modalClostBtn = document.getElementById("meme-modal-close-btn")
+const memeModal = document.getElementById("meme-modal")
 
 emotionRadios.addEventListener("change", highlightOption)
-getImageBtn.addEventListener("click", renderCat)
+// getImageBtn.addEventListener("click", renderCat)
 
+
+//'hides' the modal display when clicked. 
+modalClostBtn.addEventListener("click", function(){
+    memeModal.style.display = "none"
+})
+
+//acknowledges selected emotion in radio and links to the cat array 
+function getMatchingCat(){
+    if(document.querySelector("input[type='radio']:checked")){
+        const selectedEmotion = document.querySelector("input[type='radio']:checked").value
+        const isGif = gifsOnlyOption.ariaChecked
+
+        const selectedCat = catsData.filter(function(cat){
+            if(isGif){
+                return cat.emotionTags.includes(selectedEmotion) && cat.isGif
+            } else {
+                return cat.emotionTags.includes(selectedEmotion)
+            }
+        })
+        return selectedCat
+    }
+        
+}
+
+
+//function that adds and remove a CSS property to the selected target
 function highlightOption(event){
     const radioSelect = document.getElementsByClassName("radio")
     const classList = document.getElementById(event.target.id)
@@ -17,6 +46,8 @@ function highlightOption(event){
    classList.parentElement.classList.add("highlight")
 }
 
+
+//function that pulls in array and makes a new array based on emotionTags
 function getCatEmotions(cats){
     const emotionArray = []
     for(let cat of cats){
@@ -29,6 +60,8 @@ function getCatEmotions(cats){
     return emotionArray
 }
 
+
+// code which pulls in a filtered array and then targets an attribute within the object to be presented in the document.
 function renderEmotionRadio(cats){
     const emotionRadio = getCatEmotions(cats)
     let radioStr = ``
@@ -44,3 +77,4 @@ function renderEmotionRadio(cats){
 }
 
 renderEmotionRadio(catsData)
+getMatchingCat()
