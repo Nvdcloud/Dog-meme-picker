@@ -19,23 +19,24 @@ modalClostBtn.addEventListener("click", function(){
 })
 
 //acknowledges selected emotion in radio and links to the cat array 
+
 function getMatchingCat(){
-    if(document.querySelector("input[type='radio']:checked")){
-        const selectedEmotion = document.querySelector("input[type='radio']:checked").value
-        const isGif = gifsOnlyOption.checked
-
-        const selectedCat = catsData.filter(function(cat){
-            if(isGif){
-                return cat.emotionTags.includes(selectedEmotion) && cat.isGif
-            } else {
-                return cat.emotionTags.includes(selectedEmotion)
-            }
-        })
-        return selectedCat
+        if(document.querySelector("input[type='radio']:checked")){
+            const selectedEmotion = document.querySelector("input[type='radio']:checked").value
+            const isGif = gifsOnlyOption.checked
+    
+            const selectedCat = catsData.filter(function(cat){
+                if(isGif){
+                    return cat.emotionTags.includes(selectedEmotion) && cat.isGif
+                } else {
+                    return cat.emotionTags.includes(selectedEmotion)
+                }
+            })
+            return selectedCat
+        }
+            
     }
-        
-}
-
+    
 
 function getSingleCatObject(){
     const singleCat = getMatchingCat()
