@@ -21,42 +21,46 @@ modalClostBtn.addEventListener("click", function(){
 //acknowledges selected emotion in radio and links to the cat array 
 
 function getMatchingCat(){
-        if(document.querySelector("input[type='radio']:checked")){
-            const selectedEmotion = document.querySelector("input[type='radio']:checked").value
-            const isGif = gifsOnlyOption.checked
+            if(document.querySelector("input[type='radio']:checked")){
+                const selectedEmotion = document.querySelector("input[type='radio']:checked").value
+                const isGif = gifsOnlyOption.checked
+        
+                const selectedCat = catsData.filter(function(cat){
+                    if(isGif){
+                        return cat.emotionTags.includes(selectedEmotion) && cat.isGif
+                    } else {
+                        return cat.emotionTags.includes(selectedEmotion)
+                    }
+                })
+                return selectedCat
+            }
+                
+ }
+
+// return a single cat after filtering based on radio selected. 
+    function getSingleCatObject(){
+        const singleCat = getMatchingCat()
     
-            const selectedCat = catsData.filter(function(cat){
-                if(isGif){
-                    return cat.emotionTags.includes(selectedEmotion) && cat.isGif
-                } else {
-                    return cat.emotionTags.includes(selectedEmotion)
-                }
-            })
-            return selectedCat
+        if(singleCat.length === 1){
+            return singleCat[0]
+        } else {
+          let randomNumber = Math.floor(Math.random() * singleCat.length)
+            return singleCat[randomNumber]
         }
-            
     }
     
 
-function getSingleCatObject(){
-    const singleCat = getMatchingCat()
-
-    if(singleCat.length === 1){
-        return singleCat[0]
-    } else {
-      let randomNumber = Math.floor(Math.random() * singleCat.length)
-        return singleCat[randomNumber]
+//render cat image/gif selected from previous function plus alt test. 
+//Also need to change modal so that it 'appears'
+ function renderMemeCat(){
+        const renderCat = getSingleCatObject()
+        memeModalInner.innerHTML = `
+        <img class="cat-img" src="./images/${renderCat.image}" alt="${renderCat.alt}">
+        
+        `
+        memeModal.style.display = "flex"
     }
-}
 
-function renderMemeCat(){
-    const renderCat = getSingleCatObject()
-    memeModalInner.innerHTML = `
-    <img class="cat-img" src="./images/${renderCat.image}" alt="${renderCat.alt}">
-    
-    `
-    memeModal.style.display = "flex"
-}
 
 //function that adds and remove a CSS property to the selected target
 function highlightOption(event){
@@ -102,3 +106,12 @@ function renderEmotionRadio(cats){
 
 renderEmotionRadio(catsData)
 getMatchingCat()
+
+
+
+
+        
+
+
+
+   
