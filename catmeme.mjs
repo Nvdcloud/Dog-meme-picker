@@ -6,6 +6,7 @@ const gifsOnlyOption = document.getElementById("gifs-only-option")
 const modalClostBtn = document.getElementById("meme-modal-close-btn")
 const memeModal = document.getElementById("meme-modal")
 const memeModalInner = document.getElementById("meme-modal-inner")
+const memeOptions = document.getElementById("meme-options")
 
 emotionRadios.addEventListener("change", highlightOption)
 getImageBtn.addEventListener("click", renderMemeCat)
@@ -48,7 +49,53 @@ function getMatchingCat(){
             return singleCat[randomNumber]
         }
     }
+
+//gets up to 3 alternative pic/gif options for rendering 
+function getalternativeCatOne(){
+    const alternativeCats = getMatchingCat()
+    if(alternativeCats.length >= 2){
+        const randomNumber = Math.floor(Math.random()* alternativeCats.length)
+        return alternativeCats[randomNumber]
+    }
+
+}
     
+function getalternativeCatTwo(){
+    const alternativeCats = getMatchingCat()
+    if(alternativeCats.length >= 2){
+        const randomNumber = Math.floor(Math.random()* alternativeCats.length)
+        return alternativeCats[randomNumber]
+    }
+
+}
+ 
+function getalternativeCatThree(){
+    const alternativeCats = getMatchingCat()
+    if(alternativeCats.length >= 2){
+        const randomNumber = Math.floor(Math.random()* alternativeCats.length)
+        return alternativeCats[randomNumber]
+    }
+
+}
+
+//function to render the random alternative cats
+function renderAlternativeCats(){
+    const renderCatOne = getalternativeCatOne()
+    const renderCatTwo = getalternativeCatTwo()
+    const renderCatThree = getalternativeCatThree()
+
+    memeOptions.innerHTML = `
+    <div class="meme-options-boxes"
+    <img class="cat-options-img" src="./images/${renderCatOne.image}" alt="${renderCatOne.alt}">
+    <img class="cat-options-img" src="./images/${renderCatTwo.image}" alt="${renderCatTwo.alt}">
+    <img class="cat-options-img" src="./images/${renderCatThree.image}" alt="${renderCatThree.alt}">
+    </div>
+    `
+    memeOptions.style.display = "flex"
+
+}
+
+
 
 //render cat image/gif selected from previous function plus alt test. 
 //Also need to change modal so that it 'appears'
