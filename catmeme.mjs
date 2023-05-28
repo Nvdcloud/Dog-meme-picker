@@ -52,14 +52,19 @@ function getMatchingCat(){
 
 //gets up to 3 alternative pic/gif options for rendering 
 function getalternativeCatOne(){
+    const altCatArray = []
     const alternativeCats = getMatchingCat()
     if(alternativeCats.length >= 2){
         const randomNumber = Math.floor(Math.random()* alternativeCats.length)
-        return alternativeCats[randomNumber]
+        if(!altCatArray.includes(alternativeCats)){
+         altCatArray.push(alternativeCats[randomNumber])
+        }
     }
-
+    return altCatArray
 }
-    
+
+
+
 function getalternativeCatTwo(){
     const alternativeCats = getMatchingCat()
     if(alternativeCats.length >= 2){
@@ -85,7 +90,7 @@ function renderAlternativeCats(){
     const renderCatThree = getalternativeCatThree()
 
     memeOptions.innerHTML = `
-    <div class="meme-options-boxes"
+    <div class="meme-options-boxes">
     <img class="cat-options-img" src="./images/${renderCatOne.image}" alt="${renderCatOne.alt}">
     <img class="cat-options-img" src="./images/${renderCatTwo.image}" alt="${renderCatTwo.alt}">
     <img class="cat-options-img" src="./images/${renderCatThree.image}" alt="${renderCatThree.alt}">

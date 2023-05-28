@@ -110,16 +110,21 @@ input[type="radio"]{
     display: none;
     align-items: center;
     justify-items: center;
-
+    
 }
 .meme-options-boxes {
-    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
     width: 400px;
     height: 100px;
     border: 1px solid #bcbcbc;
     box-shadow: 1px solid black;
     cursor: pointer;
-    margin: 2px;
+    margin: 30px 0 0 0;
+    border-radius: 5px;
+    padding: 3px 6px; 
 }
 
 .meme-options-boxes:hover{
@@ -146,6 +151,7 @@ input[type="radio"]{
 
 .meme-modal{
     display: none;
+    flex-direction: column;
     position: fixed;
     margin: auto; 
     top: 80px;
