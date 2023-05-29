@@ -7,10 +7,11 @@ const modalClostBtn = document.getElementById("meme-modal-close-btn")
 const memeModal = document.getElementById("meme-modal")
 const memeModalInner = document.getElementById("meme-modal-inner")
 const memeOptions = document.getElementById("meme-options")
+const memeOptionsBoxes = document.getElementById("meme-options-boxes")
 
 emotionRadios.addEventListener("change", highlightOption)
 getImageBtn.addEventListener("click", renderMemeCat)
-
+getImageBtn.addEventListener("click", renderAlternativeCats)
 
 
 
@@ -51,52 +52,36 @@ function getMatchingCat(){
     }
 
 //gets up to 3 alternative pic/gif options for rendering 
-function getalternativeCatOne(){
+function getalternativeCat(){
     const altCatArray = []
     const alternativeCats = getMatchingCat()
-    if(alternativeCats.length >= 2){
-        const randomNumber = Math.floor(Math.random()* alternativeCats.length)
-        if(!altCatArray.includes(alternativeCats)){
-         altCatArray.push(alternativeCats[randomNumber])
+    
+        for(let alterCat of alternativeCats){
+          if(!altCatArray.includes(alterCat)){
+             altCatArray.push(alterCat)
+            }
         }
-    }
-    return altCatArray
-}
-
-
-
-function getalternativeCatTwo(){
-    const alternativeCats = getMatchingCat()
-    if(alternativeCats.length >= 2){
-        const randomNumber = Math.floor(Math.random()* alternativeCats.length)
-        return alternativeCats[randomNumber]
-    }
+        console.log(altCatArray)
+    
+     return altCatArray
 
 }
- 
-function getalternativeCatThree(){
-    const alternativeCats = getMatchingCat()
-    if(alternativeCats.length >= 2){
-        const randomNumber = Math.floor(Math.random()* alternativeCats.length)
-        return alternativeCats[randomNumber]
-    }
 
-}
+
 
 //function to render the random alternative cats
 function renderAlternativeCats(){
-    const renderCatOne = getalternativeCatOne()
-    const renderCatTwo = getalternativeCatTwo()
-    const renderCatThree = getalternativeCatThree()
-
-    memeOptions.innerHTML = `
-    <div class="meme-options-boxes">
-    <img class="cat-options-img" src="./images/${renderCatOne.image}" alt="${renderCatOne.alt}">
-    <img class="cat-options-img" src="./images/${renderCatTwo.image}" alt="${renderCatTwo.alt}">
-    <img class="cat-options-img" src="./images/${renderCatThree.image}" alt="${renderCatThree.alt}">
-    </div>
-    `
+    const renderCats = getalternativeCat()
     memeOptions.style.display = "flex"
+    let addtionalOptions = ``
+    for(let cats of renderCats){
+        addtionalOptions += `
+        <img class="cat-options-img" src="./images/${cats.image}" alt="${cats.alt}">
+        `
+    }
+
+    memeOptionsBoxes.innerHTML =  addtionalOptions
+    
 
 }
 
@@ -158,7 +143,6 @@ function renderEmotionRadio(cats){
 
 renderEmotionRadio(catsData)
 getMatchingCat()
-
 
 
 
