@@ -12,6 +12,7 @@ const memeOptionsBoxes = document.getElementById("meme-options-boxes")
 emotionRadios.addEventListener("change", highlightOption)
 getImageBtn.addEventListener("click", renderMemeCat)
 getImageBtn.addEventListener("click", renderAlternativeCats)
+memeOptionsBoxes.addEventListener("click", altSelection)
 
 
 
@@ -55,13 +56,14 @@ function getMatchingCat(){
 function getalternativeCat(){
     const altCatArray = []
     const alternativeCats = getMatchingCat()
-    
-        for(let alterCat of alternativeCats){
-          if(!altCatArray.includes(alterCat)){
-             altCatArray.push(alterCat)
+        if(alternativeCats.length >= 2){
+            for(let alterCat of alternativeCats){
+            if(!altCatArray.includes(alterCat)){
+                altCatArray.push(alterCat)
+                
+                }
             }
-        }
-        console.log(altCatArray)
+        } 
     
      return altCatArray
 
@@ -109,7 +111,16 @@ function highlightOption(event){
 
    
    classList.parentElement.classList.add("highlight")
+   
 }
+
+//function that selects the alt memes and replaces the main pic
+function altSelection(event){
+    const imgSelect = document.querySelector()
+
+    console.log(imgSelect)
+}
+
 
 
 //function that pulls in array and makes a new array based on emotionTags
