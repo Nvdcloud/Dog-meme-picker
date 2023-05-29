@@ -115,11 +115,11 @@ function highlightOption(event){
 }
 
 //function that selects the alt memes and replaces the main pic
-function altSelection(event){
-    const imgSelect = document.querySelector()
+// function altSelection(event){
+//     const imgSelect = document.querySelector(event.tart)
 
-    console.log(imgSelect)
-}
+//     console.log(imgSelect)
+// }
 
 
 
