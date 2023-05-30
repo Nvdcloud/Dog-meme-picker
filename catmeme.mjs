@@ -78,7 +78,7 @@ function renderAlternativeCats(){
     let addtionalOptions = ``
     for(let cats of renderCats){
         addtionalOptions += `
-        <img class="cat-options-img" src="./images/${cats.image}" alt="${cats.alt}">
+        <img class="cat-options-img" id="${cats.image}"src="./images/${cats.image}" alt="${cats.alt}">
         `
     }
 
@@ -114,12 +114,18 @@ function highlightOption(event){
    
 }
 
-//function that selects the alt memes and replaces the main pic
-// function altSelection(event){
-//     const imgSelect = document.querySelector(event.tart)
+// function that selects the alt memes and replaces the main pic
+function altSelection(){
+    const imgSelect = document.querySelectorAll(".meme-options-boxes img")
+    for (let img of imgSelect){
+         img.onclick = function(){
+            console.log(img.id)
+         }
+    }
 
-//     console.log(imgSelect)
-// }
+
+    
+}
 
 
 
@@ -154,7 +160,6 @@ function renderEmotionRadio(cats){
 
 renderEmotionRadio(catsData)
 getMatchingCat()
-
 
 
         
