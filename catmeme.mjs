@@ -119,7 +119,10 @@ function altSelection(){
     const imgSelect = document.querySelectorAll(".meme-options-boxes img")
     for (let img of imgSelect){
          img.onclick = function(){
-            console.log(img.id)
+            memeModalInner.innerHTML = `
+            <img class="cat-img" src="./images/${img.id}">
+        
+            `
          }
     }
 
