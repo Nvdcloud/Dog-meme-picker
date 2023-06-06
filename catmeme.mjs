@@ -53,31 +53,31 @@ function getMatchingCat(){
     }
 
 //gets up to 3 alternative pic/gif options for rendering 
-function getalternativeCat() {
+function getalternativeCat(){
     const altCatArray = []
     const alternativeCats = getMatchingCat()
-    if (alternativeCats.length >= 2  && alternativeCats.length < 4) {
-      for (let alterCat of alternativeCats) {
-        if (!altCatArray.includes(alterCat)) {
-          altCatArray.push(alterCat)
-  
+        if(alternativeCats.length >= 2){
+            for(let alterCat of alternativeCats){
+            if(!altCatArray.includes(alterCat)){
+                altCatArray.push(alterCat)
+                
+                }
+            }
+        } else if(alternativeCats.length >= 4){
+            const shuffledCats = alternativeCats.splice()
+            for(let i = shuffledCats.length - 1; i > 0; i--){
+                const j = Math.floor(Math.random()* (i + 1))
+               const randomCats = [shuffledCats[i], shuffledCats[j]] = [shuffledCats[j], shuffledCats[i]]
+               const randomFour = shuffledCats.splice(0, 4)
+               for(let four of randomFour){
+                altCatArray.push(four)
+               }
+            }
         }
-      }
-    } else if (alternativeCats.length >= 4) {
-      const shuffledCats = alternativeCats.slice()
-      for (let i = shuffledCats.length - 1; i > 0 && altCatArray.length < 4; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-         [shuffledCats[i], shuffledCats[j]] = [shuffledCats[j], shuffledCats[i]]
-        
-            altCatArray.push(shuffledCats[i])
-            altCatArray.push(shuffledCats[j])
-        
-      }
-    }
-  
-    return altCatArray
-  
-  }
+    
+     return altCatArray.splice(0,4)
+
+}
 
 
 function shuffleArray(array) {
