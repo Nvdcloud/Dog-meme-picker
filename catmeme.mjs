@@ -53,21 +53,49 @@ function getMatchingCat(){
     }
 
 //gets up to 3 alternative pic/gif options for rendering 
-function getalternativeCat(){
+function getalternativeCat() {
     const altCatArray = []
     const alternativeCats = getMatchingCat()
-        if(alternativeCats.length >= 2){
-            for(let alterCat of alternativeCats){
-            if(!altCatArray.includes(alterCat)){
-                altCatArray.push(alterCat)
-                
-                }
-            }
-        } 
-    
-     return altCatArray
+    if (alternativeCats.length >= 2  && alternativeCats.length < 4) {
+      for (let alterCat of alternativeCats) {
+        if (!altCatArray.includes(alterCat)) {
+          altCatArray.push(alterCat)
+  
+        }
+      }
+    } else if (alternativeCats.length >= 4) {
+      const shuffledCats = alternativeCats.slice()
+      for (let i = shuffledCats.length - 1; i > 0 && altCatArray.length < 4; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+         [shuffledCats[i], shuffledCats[j]] = [shuffledCats[j], shuffledCats[i]]
+        
+            altCatArray.push(shuffledCats[i])
+            altCatArray.push(shuffledCats[j])
+        
+      }
+    }
+  
+    return altCatArray
+  
+  }
 
-}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+  
+  const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const shuffledItems = shuffleArray(items);
+  
+  
+  
+  const randomItems = shuffledItems.slice(0, 4)
+  
+  console.log(randomItems)
 
 
 
