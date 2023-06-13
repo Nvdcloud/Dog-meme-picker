@@ -88,15 +88,6 @@ function shuffleArray(array) {
     return array;
   }
   
-  const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const shuffledItems = shuffleArray(items);
-  
-  
-  
-  const randomItems = shuffledItems.slice(0, 4)
-  
-  console.log(randomItems)
-
 
 
 //function to render the random alternative cats
